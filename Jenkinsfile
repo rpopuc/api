@@ -3,15 +3,15 @@ node('php'){
         deleteDir()
         sh 'ls -la'
     }
-    
+
     stage('Fetch') {
         checkout scm
     }
-    
+
     stage('Build'){
         sh 'composer install --prefer-dist --no-dev --ignore-platform-reqs'
     }
-    
+
     stage('config') {
         parallel(
             'config cache': {
@@ -22,13 +22,6 @@ node('php'){
             }
         )
     }
-    #stage('Docker Build') {
-    #    sh 'docker build -t rpopuc/todoapi:$BUILD_NUMBER .'
-    #}
-    
-    #stage('Docker Ship') {
-    #    sh 'docker push rpopuc/todoapi:$BUILD_NUMBER'
-    #}
     stage('Test') {
          sh 'phpunit'
     }
