@@ -23,6 +23,7 @@ node('php') {
     }
     stage('Testes') {
          sh './vendor/bin/phpunit'
+         sh 'ls -latr'
     }
 }
 
