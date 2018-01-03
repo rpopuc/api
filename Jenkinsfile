@@ -19,7 +19,7 @@ node('php'){
             },
             'config route': {
                 sh 'php artisan route:cache'
-            }
+            },
             'config app': {
                 sh 'cp .env.example .env'
                 sh 'php artisan key:generate'
