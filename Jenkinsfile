@@ -27,6 +27,10 @@ node('php') {
 }
 
 node('docker') {
+    stage('Debug') {
+        sh 'ls -la'
+    }
+
     stage('Docker Build') {
         sh 'docker build -t rpopuc/todoapi:$BUILD_NUMBER .'
     }
