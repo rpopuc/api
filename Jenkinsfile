@@ -1,4 +1,4 @@
-node('php'){
+node('php') {
     stage('Preparação'){
         deleteDir()
         sh 'ls -la'
@@ -23,5 +23,15 @@ node('php'){
     }
     stage('Testes') {
          sh './vendor/bin/phpunit'
+    }
+}
+
+node('docker') {
+    stage('Docker Build') {
+        sh 'docker build -t rpopuc/todoapi:$BUILD_NUMBER .'
+    }
+
+    stage('Docker Ship') {
+        sh 'docker push rpopuc/todoapi:$BUILD_NUMBER'
     }
 }
