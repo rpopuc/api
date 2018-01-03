@@ -22,11 +22,14 @@ node('php'){
             }
         )
     }
-    stage('Docker Build') {
-        sh 'docker build -t rpopuc/todoapi:$BUILD_NUMBER .'
-    }
+    #stage('Docker Build') {
+    #    sh 'docker build -t rpopuc/todoapi:$BUILD_NUMBER .'
+    #}
     
-    stage('Docker Ship') {
-        sh 'docker push rpopuc/todoapi:$BUILD_NUMBER'
+    #stage('Docker Ship') {
+    #    sh 'docker push rpopuc/todoapi:$BUILD_NUMBER'
+    #}
+    stage('Test') {
+         sh 'phpunit'
     }
 }
