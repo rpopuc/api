@@ -29,6 +29,7 @@ node('php'){
     stage('Test') {
          sh 'cp .env.example .env'
          sh 'php artisan key:generate'
+         sh 'php artisan config:cache'
          sh './vendor/bin/phpunit'
     }
 }
