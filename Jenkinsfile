@@ -9,7 +9,7 @@ node('php'){
     }
 
     stage('Build'){
-        sh 'composer install --prefer-dist --no-dev --ignore-platform-reqs'
+        sh 'composer install --prefer-dist --ignore-platform-reqs'
     }
 
     stage('config') {
@@ -27,7 +27,6 @@ node('php'){
         )
     }    
     stage('Test') {
-         sh 'ls -la vendor/bin'
          sh './vendor/bin/phpunit'
     }
 }
