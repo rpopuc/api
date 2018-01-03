@@ -1,7 +1,6 @@
 node('php') {
     stage('Preparação'){
         deleteDir()
-        sh 'ls -la'
     }
 
     stage('Obtenção') {
@@ -23,16 +22,11 @@ node('php') {
     }
     stage('Testes') {
          sh './vendor/bin/phpunit'
-         sh 'ls -latr'
     }
 }
 
 node('docker') {
     def app
-
-    stage('Debug') {
-        sh 'ls -la'
-    }
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
