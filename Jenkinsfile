@@ -1,35 +1,27 @@
 node('php'){
-    stage('Clean'){
+    stage('Preparação'){
         deleteDir()
         sh 'ls -la'
     }
 
-    stage('Fetch') {
+    stage('Obtenção') {
         checkout scm
     }
 
-    stage('Build'){
+    stage('Construção'){
         sh 'composer install --prefer-dist --ignore-platform-reqs'
     }
 
-    stage('config') {
+    stage('Configuração') {
         parallel(
-            'config cache': {
-                sh 'php artisan config:cache'
-            },
-            'config route': {
-                sh 'php artisan'
-            },
             'config app': {
                 sh 'cp .env.example .env'
                 sh 'php artisan key:generate'
+                sh 'php artisan config:cache'
             }
         )
-    }    
-    stage('Test') {
-         sh 'cp .env.example .env'
-         sh 'php artisan key:generate'
-         sh 'php artisan config:cache'
+    }
+    stage('Testes') {
          sh './vendor/bin/phpunit'
     }
 }
