@@ -18,11 +18,15 @@ node('php'){
                 sh 'php artisan config:cache'
             },
             'config route': {
-                sh 'php artisan'
+                sh 'php artisan route:cache'
+            }
+            'config app': {
+                sh 'cp .env.example .env'
+                sh 'php artisan key:generate'
             }
         )
-    }
+    }    
     stage('Test') {
-         sh 'phpunit'
+         sh 'vendor/bin/phpunit'
     }
 }
