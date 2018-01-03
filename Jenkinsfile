@@ -27,6 +27,6 @@ node('php'){
         )
     }    
     stage('Test') {
-         sh 'vendor/bin/phpunit'
+         sh './vendor/bin/phpunit'
     }
 }
