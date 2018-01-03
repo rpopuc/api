@@ -27,6 +27,7 @@ node('php'){
         )
     }    
     stage('Test') {
+         sh 'ls -la vendor/bin'
          sh './vendor/bin/phpunit'
     }
 }
