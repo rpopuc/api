@@ -1,0 +1,5 @@
+pipeline:
+  build:
+    image: rpopuc/laravel55-workspace
+    commands:
+      - echo "Olá"
